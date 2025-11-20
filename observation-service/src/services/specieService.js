@@ -4,7 +4,7 @@ class SpecieService {
     async createSpecie(user, data){
 
         if(!data || !data.name){
-            throw new Error("Le nom est obligatoire.");
+            throw new Error("Le nom de l'espèce est obligatoire.");
         }
 
         if(await SpecieRepository.findByName(data.name)){
@@ -21,12 +21,19 @@ class SpecieService {
             id: specie.id,
             authorId: specie.authorId,
             name: specie.name,
+            rarityScore: specie.rarityScore,
             createdAt: specie.createdAt
         };
     }
 
-    async getSpeciesList(){
-        const species = await SpecieRepository.findAll();
+    async getSpeciesList(sortedParam){
+        let species = "";
+
+        if(sortedParam && sortedParam === "rarity"){
+            species = await SpecieRepository.findByRarity()
+        } else {
+            species = await SpecieRepository.findAll();
+        }
 
         if(species.length < 0){
             throw new Error("Aucune espèce n'a été trouvée.")
@@ -46,6 +53,7 @@ class SpecieService {
             id: specie.id,
             authorId: specie.authorId,
             name: specie.name,
+            rarityScore: specie.rarityScore,
             createdAt: specie.createdAt
         };
     }

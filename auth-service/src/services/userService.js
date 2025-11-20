@@ -18,6 +18,27 @@ class UserService {
 
         return { users: user }
     }
+
+    async setUserReputation (userId, data){
+        if(!data || !data.reputation){
+            throw new Error("Le role est requis.")
+        }
+
+        const user = await UserRepository.findById(userId);
+
+        const newReputation = user.reputation + data.reputation;
+        let newRole = user.role;
+
+        if (newReputation >= 10 && user.role !== "EXPERT") {
+            newRole = "EXPERT";
+        }
+
+        return await UserRepository.update(userId, {
+            reputation: newReputation,
+            role: newRole
+        });
+
+    }
 }
 
 module.exports = new UserService();

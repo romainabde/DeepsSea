@@ -47,15 +47,9 @@ class AuthService {
             throw new Error("L'adresse e-mail existe déjà.")
         }
 
-        const allowedRoles = ["USER", "EXPERT", "ADMIN"];
-
-        if (!allowedRoles.includes(data.role)) {
-            throw new Error(`Rôle invalide : ${data.role}. Les rôles valides sont ${allowedRoles.join(", ")}.`);
-        }
-
         const passwordHash = await bcrypt.hash(data.password, 10);
 
-        const user = await AuthRepository.save(data.email, data.username, passwordHash, data.role, data.reputation)
+        const user = await AuthRepository.save(data.email, data.username, passwordHash, "USER", 0)
 
         if(!user){
             throw new Error("Impossible de créer un utilisateur.");

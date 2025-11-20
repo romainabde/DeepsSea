@@ -48,6 +48,20 @@ class UserRepository {
     }
 
     // Update
+    async update(userId, data) {
+        return await prisma.user.update({
+            where: { id: userId },
+            data,
+            select: {
+                id: true,
+                email: true,
+                username: true,
+                role: true,
+                reputation: true,
+                createdAt: true,
+            }
+        });
+    }
 
     async updateRole(userId, newRole){
         return prisma.user.update({

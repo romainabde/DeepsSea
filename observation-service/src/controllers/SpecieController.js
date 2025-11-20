@@ -11,7 +11,7 @@ exports.createSpecie = async (req, res, next) => {
 
 exports.getSpeciesList = async (req, res, next) => {
     try {
-        const response = await specieService.getSpeciesList();
+        const response = await specieService.getSpeciesList(req.query.sorted);
         return res.status(200).json(response)
     } catch (err) {
         next(err);

@@ -1,5 +1,6 @@
 const ObservationRepository = require('../repository/ObservationRepository');
 const SpecieRepository = require('../repository/SpecieRepository');
+const { updateReputation } = require("../clients/authClient");
 
 class ObservationService {
     async addObservation(user, data){
@@ -30,7 +31,7 @@ class ObservationService {
         };
     }
 
-    async updateObservationStatus(user, observationId, value){
+    async updateObservationStatus(user, observationId, value, token){
         let observation = await ObservationRepository.getById(observationId)
         if(!observation){
             throw new Error("L'observation recherchée n'existe pas.");
@@ -43,6 +44,19 @@ class ObservationService {
         observation = await ObservationRepository.update(observationId, "status", value);
         observation = await ObservationRepository.update(observationId, "validatedBy", user.sub);
         observation = await ObservationRepository.update(observationId, "validatedAt", new Date());
+
+        let reputationChanges = 0;
+        if(value === "VALIDATED"){
+            let specie = await SpecieRepository.findById(observation.speciesId);
+            let newRarityScore = 1 + specie.rarityScore / 5;
+
+            await SpecieRepository.update(specie.id, "rarityScore", newRarityScore)
+
+            reputationChanges = 3;
+        }else{
+            reputationChanges = -1
+        }
+        await updateReputation(observation.authorId, reputationChanges, token)
 
         return {
             id: observation.id,
