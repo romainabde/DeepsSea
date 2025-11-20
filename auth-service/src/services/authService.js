@@ -39,9 +39,19 @@ class AuthService {
             throw new Error("email, username and password are required");
         }
 
-        // vérifier si un  username existe déjà
-        // vérifier si un email existe déjà
-        // vérfier le rôle : USER, EXPERT, ADMIN
+        if(await AuthRepository.findByUsername(data.username)){
+            throw new Error("Le nom d'utilisateur existe déjà.")
+        }
+
+        if(await AuthRepository.findByEmail(data.email)){
+            throw new Error("L'adresse e-mail existe déjà.")
+        }
+
+        const allowedRoles = ["USER", "EXPERT", "ADMIN"];
+
+        if (!allowedRoles.includes(data.role)) {
+            throw new Error(`Rôle invalide : ${data.role}. Les rôles valides sont ${allowedRoles.join(", ")}.`);
+        }
 
         const passwordHash = await bcrypt.hash(data.password, 10);
 

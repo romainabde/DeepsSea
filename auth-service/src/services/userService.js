@@ -6,7 +6,11 @@ class UserService {
             throw new Error("Le role est requis.")
         }
 
-        // vérifier le rôle (USER, EXPERT, ADMIN)
+        const allowedRoles = ["USER", "EXPERT", "ADMIN"];
+
+        if (!allowedRoles.includes(data.role)) {
+            throw new Error(`Rôle invalide : ${data.role}. Les rôles valides sont ${allowedRoles.join(", ")}.`);
+        }
 
         if(!await UserRepository.findById(userId)) throw new Error("Utilisateur non trouvé.")
 
