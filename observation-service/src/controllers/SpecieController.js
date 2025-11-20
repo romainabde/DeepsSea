@@ -2,7 +2,7 @@ const specieService = require('../services/specieService');
 
 exports.createSpecie = async (req, res, next) => {
     try {
-        const response = specieService.createSpecie(req.user, req.body);
+        const response = await specieService.createSpecie(req.user, req.body);
         return res.status(201).json(response)
     } catch (err) {
         next(err);
@@ -11,7 +11,7 @@ exports.createSpecie = async (req, res, next) => {
 
 exports.getSpeciesList = async (req, res, next) => {
     try {
-        const response = "";
+        const response = await specieService.getSpeciesList();
         return res.status(200).json(response)
     } catch (err) {
         next(err);
@@ -20,7 +20,7 @@ exports.getSpeciesList = async (req, res, next) => {
 
 exports.getSpecie = async (req, res, next) => {
     try {
-        const response = "";
+        const response = await specieService.getSpecieById(Number(req.params.id));
         return res.status(200).json(response)
     } catch (err) {
         next(err);

@@ -1,19 +1,8 @@
 // src/middleware/authMiddleware.js
 const jwt = require("jsonwebtoken");
-const prisma = require("../prismaClient");
 
 const JWT_SECRET = process.env.JWT_SECRET || "DEV_SECRET_CHANGE_ME";
 const JWT_EXPIRES_IN = "2h";
-
-function generateToken(user) {
-    const payload = {
-        sub: user.id,
-        email: user.email,
-        username: user.username,
-        role: user.role
-    };
-    return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
-}
 
 function authMiddleware(req, res, next) {
     const header = req.headers.authorization;
@@ -49,6 +38,5 @@ function requireRole(...allowedRoles) {
 
 module.exports = {
     authMiddleware,
-    generateToken,
     requireRole
 };

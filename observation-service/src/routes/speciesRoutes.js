@@ -1,6 +1,5 @@
 const express = require("express");
 const specieController = require('../controllers/SpecieController');
-const { requireRole } = require("../middlewares/authMiddleware");
 
 const router = express.Router();
 
