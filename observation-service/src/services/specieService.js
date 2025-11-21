@@ -1,4 +1,5 @@
 const SpecieRepository = require('../repository/SpecieRepository');
+const ObservationHistoryRepository = require("../repository/ObservationHistoryRepository");
 
 class SpecieService {
     async createSpecie(user, data){
@@ -56,6 +57,17 @@ class SpecieService {
             rarityScore: specie.rarityScore,
             createdAt: specie.createdAt
         };
+    }
+
+    async getSpecieHistory(id){
+
+        const specie = await SpecieRepository.findById(id);
+        if(!specie){
+            throw new Error("L'espèce recherchée n'existe pas.")
+        }
+        const history = await ObservationHistoryRepository.findBySpecieId(id);
+
+        return { history: history }
     }
 }
 

@@ -29,14 +29,33 @@ model Observation {
   validatedBy  Int?
   validatedAt  DateTime?
   createdAt    DateTime   @default(now())
+  deleted      Boolean    @default(false)
+  deletedAt    DateTime?
 
   species  Species @relation(fields: [speciesId], references: [id])
+  histories   ObservationHistory[]
 
   @@index([speciesId])
+}
+
+model ObservationHistory {
+  id            Int          @id @default(autoincrement())
+  observationId Int
+  observation   Observation  @relation(fields: [observationId], references: [id])
+  userId        Int
+  action        String
+  createdAt     DateTime     @default(now())
 }
 
 enum Status {
   PENDING
   VALIDATED
   REJECTED
+}
+
+enum Action{
+    VALIDATED
+    REJECTED
+    DELETED
+    RESTORED
 }

@@ -35,3 +35,12 @@ exports.getObservationsList = async (req, res, next) => {
         next(err);
     }
 };
+
+exports.getSpecieHistory = async (req, res, next) => {
+    try {
+        const response = await specieService.getSpecieHistory(Number(req.params.id));
+        return res.status(200).json(response)
+    } catch (err) {
+        next(err);
+    }
+};

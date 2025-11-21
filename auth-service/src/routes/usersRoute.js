@@ -5,6 +5,6 @@ const { requireRole } = require("../middlewares/authMiddleware");
 const router = express.Router();
 
 router.patch('/:id/role', requireRole("ADMIN"), usersController.setUserRole)
-router.patch('/:id/reputation', requireRole("ADMIN"), usersController.setUserReputation)
+router.patch('/:id/reputation', requireRole("EXPERT", "ADMIN"), usersController.setUserReputation)
 
 module.exports = router;

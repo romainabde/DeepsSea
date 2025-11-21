@@ -21,13 +21,19 @@ class ObservationRepository {
 
     async getById(id){
         return await prisma.observation.findUnique({
+            where: { id: id, deleted: false }
+        });
+    }
+
+    async getAllById(id){
+        return await prisma.observation.findUnique({
             where: { id: id }
         });
     }
 
     async update(observationId, key, value) {
 
-        const allowedKeys = ["status", "validatedBy", "validatedAt", "description"];
+        const allowedKeys = ["status", "validatedBy", "validatedAt", "description", "deleted", "deletedAt"];
 
         if (!allowedKeys.includes(key)) {
             throw new Error(`Impossible de modifier la colonne ${key}`);
@@ -62,6 +68,24 @@ class ObservationRepository {
                 createdAt: { gte: dateLimit }
             },
             orderBy: { createdAt: "desc" }
+        });
+    }
+
+    async findAll(){
+        return await prisma.observation.findMany({
+            where: {
+                deleted: false
+            },
+            select: {
+                id: true,
+                speciesId: true,
+                authorId: true,
+                description: true,
+                status: true,
+                validatedBy: true,
+                validatedAt: true,
+                createdAt: true
+            },
         });
     }
 }
