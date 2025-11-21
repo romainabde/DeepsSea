@@ -5,19 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="229ba1aa-3fbe-4a14-8e75-3fadecddfd21" name="Changes" comment="add auth-service">
-      <change afterPath="$PROJECT_DIR$/../taxonomy-service/src/clients/authClient.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../observation-service/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../observation-service/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../observation-service/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../observation-service/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../observation-service/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../observation-service/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../observation-service/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/../observation-service/prisma/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../observation-service/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../observation-service/src/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../observation-service/src/controllers/ObservationController.js" beforeDir="false" afterPath="$PROJECT_DIR$/../observation-service/src/controllers/ObservationController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../observation-service/src/controllers/SpecieController.js" beforeDir="false" afterPath="$PROJECT_DIR$/../observation-service/src/controllers/SpecieController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../observation-service/src/repository/ObservationRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/../observation-service/src/repository/ObservationRepository.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../observation-service/src/routes/observationsRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/../observation-service/src/routes/observationsRoutes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../observation-service/src/services/observationService.js" beforeDir="false" afterPath="$PROJECT_DIR$/../observation-service/src/services/observationService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../observation-service/src/services/specieService.js" beforeDir="false" afterPath="$PROJECT_DIR$/../observation-service/src/services/specieService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../observation-service/src/utils/generateToken.js" beforeDir="false" afterPath="$PROJECT_DIR$/../taxonomy-service/.env" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +87,7 @@
       <workItem from="1763559520821" duration="29000" />
       <workItem from="1763559579059" duration="6708000" />
       <workItem from="1763631523737" duration="11753000" />
-      <workItem from="1763713664129" duration="2520000" />
+      <workItem from="1763713664129" duration="4607000" />
     </task>
     <task id="LOCAL-00001" summary="add auth-service">
       <option name="closed" value="true" />

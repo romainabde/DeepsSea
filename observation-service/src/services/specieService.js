@@ -1,4 +1,5 @@
 const SpecieRepository = require('../repository/SpecieRepository');
+const ObservationRepository = require('../repository/ObservationRepository')
 const ObservationHistoryRepository = require("../repository/ObservationHistoryRepository");
 
 class SpecieService {
@@ -57,6 +58,23 @@ class SpecieService {
             rarityScore: specie.rarityScore,
             createdAt: specie.createdAt
         };
+    }
+
+    async getObservationList(id){
+        const specie = await SpecieRepository.findById(id);
+        if (!specie) {
+            throw new Error("Cette espèce n'existe pas.");
+        }
+
+        const observations = await ObservationRepository.findBySpecieId(id);
+
+        return observations.map(o => ({
+            id: o.id,
+            authorId: o.authorId,
+            description: o.description,
+            status: o.status,
+            createdAt: o.createdAt
+        }));
     }
 
     async getSpecieHistory(id){

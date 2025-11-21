@@ -88,6 +88,16 @@ class ObservationRepository {
             },
         });
     }
+
+    async findBySpecieId(specieId) {
+        return await prisma.observation.findMany({
+            where: {
+                speciesId: specieId,
+                deleted: false
+            },
+            orderBy: { createdAt: "desc" }
+        });
+    }
 }
 
 module.exports = new ObservationRepository();

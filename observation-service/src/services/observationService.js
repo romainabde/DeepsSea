@@ -66,7 +66,6 @@ class ObservationService {
         }else{
             reputationChanges = -1
         }
-        console.log("la")
         await updateReputation(observation.authorId, reputationChanges, token)
 
         console.log(observationId)

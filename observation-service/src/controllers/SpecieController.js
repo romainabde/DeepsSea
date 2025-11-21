@@ -29,7 +29,7 @@ exports.getSpecie = async (req, res, next) => {
 
 exports.getObservationsList = async (req, res, next) => {
     try {
-        const response = "";
+        const response = await specieService.getObservationList(Number(req.params.id));
         return res.status(200).json(response)
     } catch (err) {
         next(err);
